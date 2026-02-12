@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wesolveai.in | AI-Powered Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            color: white;
+        }
+
+        /* Subtle Grain Texture Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.04;
+            z-index: 5;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Elegant Radial Glow - Optimized for Mobile Viewports */
+        .glow-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 1;
+            animation: breathe 10s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            padding: 2rem 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Brand Name Scaling */
+        .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.2rem, 12vw, 6.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            background: linear-gradient(180deg, #FFFFFF 40%, #A0A0A0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.75rem;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+        }
+
+        /* Fluid Tagline Spacing */
+        .tagline {
+            font-size: clamp(0.6rem, 2.5vw, 0.9rem);
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: clamp(0.4em, 2vw, 1.1em);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: clamp(2rem, 8vh, 4rem);
+            /* Centering fix for letter spacing */
+            text-indent: clamp(0.4em, 2vw, 1.1em);
+        }
+
+        /* Status Badge Responsive Padding */
+        .status-badge {
+            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            margin-bottom: clamp(1.5rem, 5vh, 3rem);
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Contact Section Scaling */
+        .contact-section {
+            margin-top: clamp(2rem, 10vh, 4rem);
+            opacity: 0.7;
+            transition: all 0.4s ease;
+        }
+
+        .contact-section:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .contact-label {
+            font-size: 0.6rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin-bottom: 0.8rem;
+        }
+
+        .email-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            font-weight: 300;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+            word-break: break-all; /* Prevents overflow on tiny screens */
+        }
+
+        .email-link:hover {
+            border-bottom-color: #fff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive UI Accents (Hides on very small screens to avoid clutter) */
+        .corner {
+            position: fixed;
+            width: clamp(15px, 5vw, 25px);
+            height: clamp(15px, 5vw, 25px);
+            border-color: rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 20;
+        }
+
+        @media (max-height: 450px) {
+            .corner { display: none; }
+            .content { padding-top: 1rem; }
+        }
+
+        body:hover .corner {
+            width: clamp(25px, 8vw, 45px);
+            height: clamp(25px, 8vw, 45px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="noise"></div>
+    <div class="glow-container"></div>
+
+    <main class="content">
+        <div class="status-badge">Coming Soon</div>
+        <h1 class="brand-name">wesolveai.in</h1>
+        <p class="tagline">AI-Powered Solutions</p>
+        
+        <div class="contact-section">
+            <p class="contact-label">Instant Enquiry</p>
+            <a href="mailto:mishalmuhammed638@gmail.com" class="email-link">mishalmuhammed638@gmail.com</a>
+        </div>
+    </main>
+
+    <!-- UI Accents -->
+    <div class="corner top-4 left-4 md:top-10 md:left-10 border-t border-l"></div>
+    <div class="corner top-4 right-4 md:top-10 md:right-10 border-t border-r"></div>
+    <div class="corner bottom-4 left-4 md:bottom-10 md:left-10 border-b border-l"></div>
+    <div class="corner bottom-4 right-4 md:bottom-10 md:right-10 border-b border-r"></div>
+
+</body>
+</html>
