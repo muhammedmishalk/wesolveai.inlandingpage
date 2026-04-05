@@ -1,202 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wesolveai.in | AI-Powered Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #000000;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeSolveAI - Automate Everything. Solve Anything.</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0a0a0a; --blue:#00d4ff; --blue2:#0077ff; --white:#ffffff; --muted:#555; --border:rgba(255,255,255,0.08); }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--white);font-family:Nunito,sans-serif;min-height:100vh;overflow-x:hidden}
+  .bg-radial{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 90% 55% at 50% 0%,rgba(70,70,70,.6) 0%,transparent 65%),radial-gradient(ellipse 60% 40% at 50% 100%,rgba(30,30,30,.35) 0%,transparent 70%),#0a0a0a}
+  #bg-canvas{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.45}
+  .wrapper{position:relative;z-index:2}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:28px 60px;border-bottom:1px solid var(--border);backdrop-filter:blur(10px);position:sticky;top:0;z-index:100;background:rgba(10,10,10,.75)}
+  .nav-logo{font-family:Nunito,sans-serif;font-size:1.4rem;font-weight:900;color:var(--white);letter-spacing:-.5px}
+  .nav-logo .dot{color:var(--blue)}
+  .nav-badge{font-family:Space Mono,monospace;font-size:.67rem;letter-spacing:2.5px;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.14);padding:7px 20px;border-radius:100px;text-transform:uppercase;background:rgba(255,255,255,.03)}
+  .hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px}
+  .coming-badge{display:inline-block;font-family:Space Mono,monospace;font-size:.67rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.16);border-radius:100px;padding:8px 24px;background:rgba(255,255,255,.04);margin-bottom:44px;animation:fadeUp .7s ease .1s both}
+  .brand-name{font-family:Nunito,sans-serif;font-size:clamp(3.8rem,12vw,10rem);font-weight:900;line-height:1;letter-spacing:-4px;margin-bottom:22px;animation:fadeUp .8s ease .25s both;background:linear-gradient(175deg,#fff 30%,#6a6a6a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .brand-name .tld{font-size:.62em;opacity:.6}
+  .tagline-sub{font-family:Space Mono,monospace;font-size:clamp(.6rem,1.6vw,.85rem);letter-spacing:6px;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:48px;animation:fadeUp .8s ease .4s both}
+  .hero-tagline{font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.8px;line-height:1.2;margin-bottom:16px;animation:fadeUp .8s ease .55s both}
+  .hero-tagline .accent{background:linear-gradient(90deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .services-pill{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:52px;animation:fadeUp .8s ease .7s both}
+  .pill{font-family:Space Mono,monospace;font-size:.63rem;letter-spacing:1.5px;text-transform:uppercase;padding:8px 18px;border:1px solid var(--border);color:var(--muted);background:rgba(255,255,255,.025);border-radius:4px;transition:all .3s}
+  .pill:hover{border-color:rgba(0,212,255,.35);color:var(--blue)}
 
-        body {
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            width: 100%;
-            font-family: 'Inter', sans-serif;
-            color: white;
-        }
-
-        /* Subtle Grain Texture Overlay */
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.04;
-            z-index: 5;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Elegant Radial Glow - Optimized for Mobile Viewports */
-        .glow-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
-            pointer-events: none;
-            z-index: 1;
-            animation: breathe 10s ease-in-out infinite;
-        }
-
-        @keyframes breathe {
-            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        .content {
-            text-align: center;
-            z-index: 10;
-            position: relative;
-            width: 90%;
-            max-width: 1200px;
-            padding: 2rem 0;
-            animation: fadeInUp 1.2s cubic-bezier(0.2, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(15px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Brand Name Scaling */
-        .brand-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.2rem, 12vw, 6.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            background: linear-gradient(180deg, #FFFFFF 40%, #A0A0A0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.75rem;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
-        }
-
-        /* Fluid Tagline Spacing */
-        .tagline {
-            font-size: clamp(0.6rem, 2.5vw, 0.9rem);
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: clamp(0.4em, 2vw, 1.1em);
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: clamp(2rem, 8vh, 4rem);
-            /* Centering fix for letter spacing */
-            text-indent: clamp(0.4em, 2vw, 1.1em);
-        }
-
-        /* Status Badge Responsive Padding */
-        .status-badge {
-            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            margin-bottom: clamp(1.5rem, 5vh, 3rem);
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 100px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        /* Contact Section Scaling */
-        .contact-section {
-            margin-top: clamp(2rem, 10vh, 4rem);
-            opacity: 0.7;
-            transition: all 0.4s ease;
-        }
-
-        .contact-section:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-
-        .contact-label {
-            font-size: 0.6rem;
-            color: #777;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            margin-bottom: 0.8rem;
-        }
-
-        .email-link {
-            color: #fff;
-            text-decoration: none;
-            font-size: clamp(0.8rem, 2vw, 0.95rem);
-            font-weight: 300;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 5px;
-            transition: all 0.3s ease;
-            word-break: break-all; /* Prevents overflow on tiny screens */
-        }
-
-        .email-link:hover {
-            border-bottom-color: #fff;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-        }
-
-        /* Responsive UI Accents (Hides on very small screens to avoid clutter) */
-        .corner {
-            position: fixed;
-            width: clamp(15px, 5vw, 25px);
-            height: clamp(15px, 5vw, 25px);
-            border-color: rgba(255, 255, 255, 0.2);
-            pointer-events: none;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 20;
-        }
-
-        @media (max-height: 450px) {
-            .corner { display: none; }
-            .content { padding-top: 1rem; }
-        }
-
-        body:hover .corner {
-            width: clamp(25px, 8vw, 45px);
-            height: clamp(25px, 8vw, 45px);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-    </style>
+  .direct-contact{display:flex;flex-direction:column;align-items:center;gap:14px;animation:fadeUp .8s ease 1s both}
+  .direct-label{font-family:Space Mono,monospace;font-size:.6rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+  .direct-email{display:inline-flex;align-items:center;gap:12px;font-family:Space Mono,monospace;font-size:.82rem;color:rgba(255,255,255,.65);text-decoration:none;border:1px solid rgba(255,255,255,.1);padding:15px 36px;background:rgba(255,255,255,.025);transition:all .3s;letter-spacing:.3px}
+  .direct-email:hover{border-color:var(--blue);color:var(--blue);background:rgba(0,212,255,.04);box-shadow:0 0 30px rgba(0,212,255,.1);transform:translateY(-2px)}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);margin:80px 0}
+  .section{padding:0 60px 100px;max-width:1200px;margin:0 auto}
+  .section-tag{display:inline-flex;align-items:center;gap:10px;font-family:Space Mono,monospace;font-size:.62rem;letter-spacing:5px;color:var(--blue);text-transform:uppercase;margin-bottom:18px;text-shadow:0 0 18px rgba(0,212,255,.55)}
+  .section-tag::before{content:"";display:inline-block;width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--blue));box-shadow:0 0 8px rgba(0,212,255,.6)}
+  .section-tag::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px rgba(0,212,255,.9);animation:blink 2s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+  .section-title{font-size:clamp(1.8rem,3.8vw,2.8rem);font-weight:900;letter-spacing:-1px;margin-bottom:50px;line-height:1.1}
+  .section-title span{color:var(--blue)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:2px}
+  .card{background:rgba(255,255,255,.02);border:1px solid var(--border);padding:42px 34px;position:relative;overflow:hidden;transition:all .4s}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--blue2));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+  .card:hover{background:rgba(255,255,255,.038);transform:translateY(-4px)}
+  .card:hover::before{transform:scaleX(1)}
+  .card-icon{font-size:2rem;margin-bottom:20px;display:block}
+  .card-num{position:absolute;top:26px;right:30px;font-family:Space Mono,monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px}
+  .card h3{font-size:1.2rem;font-weight:800;margin-bottom:12px;letter-spacing:-.3px}
+  .card p{font-size:.87rem;color:rgba(255,255,255,.38);line-height:1.75;font-weight:400}
+  .card-tag{margin-top:22px;display:block;font-family:Space Mono,monospace;font-size:.56rem;letter-spacing:2px;color:var(--blue);text-transform:uppercase;border-top:1px solid var(--border);padding-top:16px}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px}
+  .why-num{font-family:Space Mono,monospace;font-size:2.3rem;font-weight:700;color:var(--blue);line-height:1;margin-bottom:8px}
+  .why-title{font-size:1rem;font-weight:800;margin-bottom:8px}
+  .why-desc{font-size:.83rem;color:rgba(255,255,255,.36);line-height:1.75;font-weight:400}
+  .cta-banner{max-width:1200px;margin:0 auto 100px;padding:58px;background:rgba(255,255,255,.022);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;position:relative;overflow:hidden}
+  .cta-banner::before{content:"";position:absolute;top:-80px;right:-80px;width:250px;height:250px;background:radial-gradient(circle,rgba(0,212,255,.055),transparent 70%);pointer-events:none}
+  .cta-text h2{font-size:clamp(1.35rem,2.8vw,1.95rem);font-weight:900;letter-spacing:-1px;margin-bottom:8px}
+  .cta-text p{font-size:.87rem;color:rgba(255,255,255,.36)}
+  .cta-btn{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#000;font-family:Space Mono,monospace;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:17px 38px;text-decoration:none;transition:all .3s;white-space:nowrap}
+  .cta-btn:hover{box-shadow:0 0 40px rgba(0,212,255,.22);transform:translateY(-2px)}
+  footer{border-top:1px solid var(--border);padding:34px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .footer-logo{font-family:Nunito,sans-serif;font-size:1.05rem;font-weight:900;color:var(--white)}
+  .footer-email{font-family:Space Mono,monospace;font-size:.67rem;color:rgba(255,255,255,.38);text-decoration:none;letter-spacing:.5px;transition:color .2s}
+  .footer-email:hover{color:var(--blue)}
+  .footer-copy{font-family:Space Mono,monospace;font-size:.58rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}} .coming-badge,.brand-name,.tagline-sub,.hero-tagline,.services-pill,.direct-contact{opacity:1}
+  @media(max-width:768px){nav{padding:18px 20px}.section{padding:0 20px 70px}.cta-banner{padding:32px 22px;margin:0 20px 80px}footer{padding:28px 20px;flex-direction:column;text-align:center}.countdown{gap:8px}.count-num{font-size:1.7rem;padding:10px 13px;min-width:62px}.brand-name{letter-spacing:-2px}}
+</style>
 </head>
 <body>
-
-    <div class="noise"></div>
-    <div class="glow-container"></div>
-
-    <main class="content">
-        <div class="status-badge">Coming Soon</div>
-        <h1 class="brand-name">wesolveai.in</h1>
-        <p class="tagline">AI-Powered Solutions</p>
-        
-        <div class="contact-section">
-            <p class="contact-label">Instant Enquiry</p>
-            <a href="mailto:mishalmuhammed638@gmail.com" class="email-link">mishalmuhammed638@gmail.com</a>
-        </div>
-    </main>
-
-    <!-- UI Accents -->
-    <div class="corner top-4 left-4 md:top-10 md:left-10 border-t border-l"></div>
-    <div class="corner top-4 right-4 md:top-10 md:right-10 border-t border-r"></div>
-    <div class="corner bottom-4 left-4 md:bottom-10 md:left-10 border-b border-l"></div>
-    <div class="corner bottom-4 right-4 md:bottom-10 md:right-10 border-b border-r"></div>
-
-</body>
-</html>
+<div class="bg-radial"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="wrapper">
+  <nav>
+    <div class="nav-logo">wesolveai<span class="dot">.in</span></div>
+    <div class="nav-badge">Coming Soon</div>
+  </nav>
+  <section class="hero">
+    <div class="coming-badge">Coming Soon</div>
+    <div class="brand-name">wesolveai<span class="tld">.in</span></div>
+    <div class="tagline-sub">AI-Powered Solutions</div>
+    <h1 class="hero-tagline">Automate Everything. <span class="accent">Solve Anything.</span></h1>
+    <div class="services-pill">
+      <span class="pill">AI Agents</span>
+      <span class="pill">WhatsApp Automation</span>
+      <span class="pill">Software Dev</span>
+      <span class="pill">AI Solutions</span>
+    </div>
+    <div class="direct-contact">
+      <span class="direct-label">Instant Enquiry</span>
+      <a href="mailto:mishalmuhammed638@gmail.com" class="direct-email">mishalmuhammed638@gmail.com</a>
+    </div>
+  </section>
+  <div style="max-width:1200px;margin:0 auto;padding:0 60px"><div class="divider"></div></div>
+  <section class="section">
+    <div class="section-tag">What We Build</div>
+    <h2 class="section-title">Our <span>AI Services</span></h2>
+    <div class="cards">
+      <div class="card"><span class="card-icon">🤖</span><span class="card-num">01</span><h3>AI Agents</h3><p>Custom autonomous agents that handle complex tasks, make decisions, and work around the clock — so your team does not have to.</p><span class="card-tag">Autonomous · Intelligent · Scalable</span></div>
+      <div class="card"><span class="card-icon">💬</span><span class="card-num">02</span><h3>WhatsApp Automation</h3><p>Turn WhatsApp into your most powerful business channel. Automated responses, lead capture, order management and support — all on autopilot.</p><span class="card-tag">24/7 Support · Lead Gen · CRM Ready</span></div>
+      <div class="card"><span class="card-icon">⚡</span><span class="card-num">03</span><h3>Software Development</h3><p>From MVPs to full-scale platforms — we build fast, clean, AI-native software that gives your business a real competitive edge.</p><span class="card-tag">Web · Mobile · AI-Native Apps</span></div>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="section-tag">Why WeSolveAI</div>
+    <h2 class="section-title">Built Different. <span>Built Better.</span></h2>
+    <div class="why-grid">
+      <div class="why-item"><div class="why-num">10x</div><div class="why-title">Faster Automation</div><div class="why-desc">Deploy AI agents and automations in days, not months. We move fast so you can grow fast.</div></div>
+      <div class="why-item"><div class="why-num">24/7</div><div class="why-title">Always On</div><div class="why-desc">Your AI agents never sleep, never take breaks, and never miss a lead — ever.</div></div>
+      <div class="why-item"><div class="why-num">∞</div><div class="why-title">Scalability</div><div class="why-desc">One agent or a thousand — our systems scale with your business without adding overhead.</div></div>
+      <div class="why-item"><div class="why-num">01</div><div class="why-title">One Partner</div><div class="why-desc">AI strategy, development, and automation — all under one roof. No juggling multiple vendors.</div></div>
+    </div>
+  </section>
+  <div class="cta-banner">
+    <div class="cta-text"><h2>Ready to automate your business?</h2><p>Drop us a message. Lets talk about what AI can do for you.</p></div>
+    <a href="/cdn-cgi/l/email-protection#7815110b101914150d101915151d1c4e4b40381f15191114561b1715" class="cta-btn">Start a Conversation</a>
+  </div>
+  <footer>
+    <div class="footer-logo">wesolveai<span style="color:var(--blue)">.in</span></div>
+    <a href="mailto:mishalmuhammed638@gmail.com" class="footer-email">mishalmuhammed638@gmail.com</a>
+    <div class="footer-copy">&copy; 2026 WeSolveAI &nbsp;&middot;&nbsp; All rights reserved</div>
+  </footer>
+</div>
+<script>
+  const canvas=document.getElementById("bg-canvas"),ctx=canvas.getContext("2d");let W,H,nodes=[];
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+  function initNodes(){nodes=[];const count=Math.floor(W*H/22000);for(let i=0;i<count;i++)nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.1+.3})}
+  function draw(){ctx.clearRect(0,0,W,H);for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<130){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle="rgba(255,255,255,"+(0.035*(1-dist/130))+")";ctx.lineWidth=.5;ctx.stroke()}}nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fillStyle="rgba(255,255,255,0.15)";ctx.fill();n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1});requestAnimationFrame(draw)}
+  resize();initNodes();draw();window.addEventListener("resize",()=>{resize();initNodes()});
+  const launch=new Date("2026-05-01T00:00:00");
+  function updateCountdown(){const diff=launch-new Date();if(diff<=0){["days","hours","mins","secs"].forEach(id=>document.getElementById(id).textContent="00");return}const d=Math.floor(diff/86400000),h
